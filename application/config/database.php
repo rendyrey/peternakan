@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'peternakan',
+	'hostname' => 'peternakan.ratisa-media.com',
+	'username' => 'u5514309_root',
+	'password' => 'lensadata246',
+	'database' => 'u5514309_peternakan',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

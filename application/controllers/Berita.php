@@ -62,7 +62,7 @@ class Berita extends CI_Controller {
     $this->form_validation->set_rules('isi_berita','Isi Berita','required');
     if ($this->form_validation->run()) {
       $query=$this->Berita_m->get_last_isi_berita()->row();
-      $jml = $query->id_isi_berita;
+      if($jml = $query->id_isi_berita)
       $jml++;
       $temp = explode(".", $_FILES["gambar"]["name"]);
       $extension = end($temp);
@@ -102,6 +102,8 @@ class Berita extends CI_Controller {
         $input['news_value'] = $this->input->post('news_value');
         $input['isi_berita'] = $this->input->post('isi_berita');
         $input['tgl_post'] = date('Y-m-d H:i:s');
+        $input['kutipan'] = $this->separate_quote($input['isi_berita']);
+        $input['tone_berita'] = $this->calculate_tone($input['isi_berita']);
         $this->Berita_m->insert_berita($input);
         $this->session->set_flashdata('message','Post Berita Berhasil!');
         $data = array('upload_data' => $this->upload->data());
@@ -114,6 +116,39 @@ class Berita extends CI_Controller {
       // echo "gagal";
     }
 
+  }
+
+  public function calculate_tone($string){
+    // $this->check_login();
+    $data['string'] = $string;
+    $tone =  $this->load->view('tone/examples/tone', $data,TRUE);
+    // error_reporting(0);
+    // echo $tone."haha";
+    // echo $string;
+    // $tone = $this->load->view('tone/examples/tone',$data,TRUE);
+    $sentiment=0;
+
+
+    if($tone == "pos"){
+      $sentiment = 1;
+    }else if($tone == "neg"){
+      $sentiment = -1;
+    }else if($tone == "neu"){
+      $sentiment = 0;
+    }
+    // echo $sentiment;
+    // echo $sentiment;
+    return $sentiment;
+  }
+
+  public function separate_quote($data){
+    // $this->check_login();
+    preg_match_all('/"([^"]+)"/', $data, $m);
+    $quote="";
+    foreach($m[1] as $words){
+      $quote=$quote.",".$words;
+    }
+    return $quote;
   }
 
   public function tabel_berita($id_topik){

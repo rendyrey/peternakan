@@ -41,10 +41,11 @@
                        $i=0;
                        foreach($isi_berita as $row){
                          $date_post = strtotime($row->tgl_post);
+                         $date_news = strtotime($row->tgl_berita);
                          $i++;
                          echo "<tr>";
                          echo "<td>$i</td>";
-                         echo "<td><i class='fa fa-clock-o'></i>&nbsp;".date('D, d F Y, H:i',$date_post);
+                         echo "<td><i class='fa fa-clock-o'></i>&nbsp;".date('D, d F Y, ',$date_news).date('H:i',$date_post);
                          echo "<br>";
                          echo "<h4>$row->judul_berita</h4>";
                          echo "<span class='label label-info'>$row->nama_sub_topik</span>";
