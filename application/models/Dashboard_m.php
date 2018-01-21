@@ -46,6 +46,17 @@ class Dashboard_m extends CI_Model {
     $this->db->order_by('tgl_post', 'desc');
     return $this->db->get('isi_berita');
   }
+
+  function get_trending_today(){
+    $this->db->select('nama_sub_topik,sub_topik.id_topik as id_topik,isi_berita.id_sub_topik as id_sub,count(isi_berita.id_sub_topik) as total');
+		$this->db->from('isi_berita,sub_topik');
+		// $this->db->where('tgl_berita',date('Y-m-d'));
+		$this->db->where('isi_berita.id_sub_topik=sub_topik.id_sub_topik');
+    $this->db->where('tgl_post >=',date('Y-m-d'));
+		$this->db->group_by('isi_berita.id_sub_topik');
+		$this->db->order_by('total', 'desc');
+		return $this->db->get();
+  }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lDashboard_m.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Dashboard_m/:application/models/${1/(.+)/lDashboard_m.php/}} */

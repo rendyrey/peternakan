@@ -38,9 +38,21 @@ class Dashboard extends CI_Controller {
 		foreach($berita_today->result() as $row){
 			$data['judul_berita'][] = $row->judul_berita;
 			$data['id_isi_berita'][] = $row->id_isi_berita;
+
+			$tone_berita = $row->tone_berita;
+			if($tone_berita==1){
+				$data['tone_berita'][] = "<span class='label label-success'><i class='fa fa-hand-o-up'></i>&nbsp;Positif</span>";
+			}else if($tone_berita == -1){
+				$data['tone_berita'][] = "<span class='label label-danger'><i class='fa fa-hand-o-down'></i>&nbsp;Negatif</span>";
+			}else if($tone_berita == 0){
+				$data['tone_berita'][] = "<span class='label label-warning'><i class='fa fa-hand-o-right'></i>&nbsp;Netral</span>";
+			}
+			$data['tgl_berita'][] = date('D, d M Y',strtotime($row->tgl_berita));
+			$data['jam_berita'][] = date('H:i',strtotime($row->tgl_post));
 			$id_sub_topik = $row->id_sub_topik;
 			$q_sub_topik = $this->Berita_m->get_sub_topik_byid($id_sub_topik)->row();
 			$data['nama_sub_topik'][] = $q_sub_topik->nama_sub_topik;
+
 			//untuk isi berita
 			$string = strip_tags($row->isi_berita);
 			if (strlen($string) > 250) {
@@ -71,6 +83,15 @@ class Dashboard extends CI_Controller {
 				$data['persen_pos'] = 0;
 				$data['persen_neu'] = 0;
 			}
+
+		//untuk trending berita hari ini
+		$q_trend = $this->Dashboard_m->get_trending_today();
+		$data['jml_trend'] = $q_trend->num_rows();
+		foreach($q_trend->result() as $row){
+			$data['trend_sub_topik'][] = $row->nama_sub_topik;
+			$data['id_topik'][] = $row->id_topik;
+			$data['id_sub'][] =  $row->id_sub;
+		}
 		$this->load->view('header',$data);
 		$this->load->view('dashboard/main');
 		$this->load->view('footer');

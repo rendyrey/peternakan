@@ -147,7 +147,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                   <!-- <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Ad Value"> -->
-                  <?=form_input('ad_value','','class="form-control has-feedback-left" placeholder="Ad value"');?>
+                  <?=form_input('ad_value','','class="form-control has-feedback-left" placeholder="Ad value" id="auto_number"');?>
                   <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                 </div>
               </div>
@@ -155,7 +155,7 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">News Value</label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
 
-                  <?=form_input('news_value','','class="form-control has-feedback-left" placeholder="News value"');?>
+                  <?=form_input('news_value','','class="form-control has-feedback-left" placeholder="News value" id="auto_number2"');?>
                   <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                 </div>
               </div>

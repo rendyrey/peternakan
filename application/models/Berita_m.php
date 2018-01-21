@@ -38,6 +38,18 @@ class Berita_m extends CI_Model {
     return $this->db->get()->result();
   }
 
+  function get_isi_berita_bysubtopik($id_sub_topik,$tgl_awal=null,$tgl_akhir=null){
+    $this->db->from('isi_berita,topik,sub_topik,media,narasumber');
+    $this->db->where('isi_berita.id_topik = topik.id_topik');
+    $this->db->where('isi_berita.id_sub_topik = sub_topik.id_sub_topik');
+    $this->db->where('isi_berita.id_media = media.id_media');
+    $this->db->where('isi_berita.id_narasumber = narasumber.id_narasumber');
+    $this->db->where('isi_berita.id_sub_topik',$id_sub_topik);
+    if($tgl_awal) $this->db->where('isi_berita.tgl_berita >=', $tgl_awal);
+    if($tgl_akhir) $this->db->where('isi_berita.tgl_berita <=', $tgl_akhir);
+    return $this->db->get()->result();
+  }
+
   function get_isi_berita_by_id($id_isi_berita){
     $this->db->from('isi_berita,topik,sub_topik,media,narasumber');
     $this->db->where('isi_berita.id_topik = topik.id_topik');

@@ -35,6 +35,27 @@ class Berita extends CI_Controller {
 
   }
 
+  public function trend_table($id_sub_topik){
+    $data['topik'] = $this->Berita_m->get_topik();
+    $this->form_validation->set_rules('tgl', 'Tanggal Berita', 'required');
+    if ($this->form_validation->run()) {
+      $tgl = $this->input->post('tgl');
+      $tgl_awal = date('Y-m-d',strtotime(substr($tgl,0,10)));
+      $tgl_akhir = date('Y-m-d',strtotime(substr($tgl,-10)));
+      $data['isi_berita'] = $this->Berita_m->get_isi_berita_bysubtopik($id_sub_topik,$tgl_awal,$tgl_akhir);
+      $this->load->view('header', $data);
+      $this->load->view('berita/tabel_berita',$data);
+      $this->load->view('footer');
+    } else {
+      $tgl_awal = date('Y-m-d');
+      $tgl_akhir = date('Y-m-d');
+      $data['isi_berita'] = $this->Berita_m->get_isi_berita_bysubtopik($id_sub_topik,$tgl_awal,$tgl_akhir);
+      $this->load->view('header', $data);
+      $this->load->view('berita/tabel_berita_trend',$data);
+      $this->load->view('footer');
+    }
+  }
+
   public function post(){
     $data['topik'] = $this->Berita_m->get_topik();
 
