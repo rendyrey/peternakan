@@ -14,23 +14,23 @@
             <br>
             <form id="post_berita" action="<?=site_url('Berita/posting');?>" method="post" enctype="multipart/form-data" data-parsley-validate="" class="form-horizontal form-label-left">
               <?php
-                if($this->session->flashdata('message')){
-               ?>
-              <div class="alert alert-success alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                    </button>
-                    <strong><?=$this->session->flashdata('message');?></strong>
-                  </div>
-                <?php } ?>
-                <?php
-                  if($this->session->flashdata('msg_gmbr')){
-                 ?>
+              if($this->session->flashdata('message')){
+                ?>
+                <div class="alert alert-success alert-dismissible fade in" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong><?=$this->session->flashdata('message');?></strong>
+                </div>
+              <?php } ?>
+              <?php
+              if($this->session->flashdata('msg_gmbr')){
+                ?>
                 <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-                      </button>
-                      <strong><?=$this->session->flashdata('msg_gmbr');?> <= 2MB</strong>
-                    </div>
-                  <?php } ?>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                  </button>
+                  <strong><?=$this->session->flashdata('msg_gmbr');?> <= 2MB</strong>
+                </div>
+              <?php } ?>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sub Topik
                 </label>
@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Narasumber
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Narasumber 1
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
@@ -71,11 +71,35 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Narasumber 2
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
+                  <?=form_dropdown('id_narasumber2',$narsum_opt,'','class="form-control col-md-7 col-xs-12 select_search" ');?>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Narasumber 3
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
+                  <?=form_dropdown('id_narasumber3',$narsum_opt,'','class="form-control col-md-7 col-xs-12 select_search" ');?>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Narasumber 4
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
+                  <?=form_dropdown('id_narasumber4',$narsum_opt,'','class="form-control col-md-7 col-xs-12 select_search" ');?>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Gambar
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <!-- <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12"> -->
-                  <?=form_upload('gambar','','class="form-control col-md-7 col-xs-12"');?>
+                  <?=form_upload('gambar','','class="form-control col-md-7 col-xs-12" required');?>
                 </div>
               </div>
               <div class="form-group">

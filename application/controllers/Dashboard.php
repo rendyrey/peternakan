@@ -25,12 +25,54 @@ class Dashboard extends CI_Controller {
 			redirect('Login');
 		}
 		$this->load->model('Berita_m');
+		$this->load->model('Dashboard_m');
 	}
 	public function index()
 	{
+		//untuk menu berita
 		$data['topik'] = $this->Berita_m->get_topik();
+
+		//untuk berita hari ini
+		$berita_today = $this->Dashboard_m->get_berita_hari_ini();
+		$data['jml_berita_today'] = $berita_today->num_rows();
+		foreach($berita_today->result() as $row){
+			$data['judul_berita'][] = $row->judul_berita;
+			$data['id_isi_berita'][] = $row->id_isi_berita;
+			$id_sub_topik = $row->id_sub_topik;
+			$q_sub_topik = $this->Berita_m->get_sub_topik_byid($id_sub_topik)->row();
+			$data['nama_sub_topik'][] = $q_sub_topik->nama_sub_topik;
+			//untuk isi berita
+			$string = strip_tags($row->isi_berita);
+			if (strlen($string) > 250) {
+				// truncate string
+				$stringCut = substr($string, 0, 250);
+				// make sure it ends in a word so assassinate doesn't become ass...
+				$string = substr($stringCut, 0, strrpos($stringCut, ' '))."...";
+			}
+			$data['isi_berita'][] = $string;
+			$data['link_berita'][] = $row->link_berita;
+
+		}
+
+		//untuk tone berita hari ini
+		$positif_today = $this->Dashboard_m->get_positif_today();
+		$data['jml_pos'] = $positif_today->num_rows();
+		$negatif_today = $this->Dashboard_m->get_negatif_today();
+		$data['jml_neg'] = $negatif_today->num_rows();
+		$netral_today = $this->Dashboard_m->get_netral_today();
+		$data['jml_neu'] = $netral_today->num_rows();
+		$total = $data['jml_pos']+$data['jml_neg']+$data['jml_neu'];
+		if($total!=0){
+				$data['persen_neg'] = ($data['jml_neg']/$total)*100;
+				$data['persen_pos'] = ($data['jml_pos']/$total)*100;
+				$data['persen_neu'] = ($data['jml_neu']/$total)*100;
+			}else{
+				$data['persen_neg'] = 0;
+				$data['persen_pos'] = 0;
+				$data['persen_neu'] = 0;
+			}
 		$this->load->view('header',$data);
-		$this->load->view('dashboard/main',$data);
-		$this->load->view('footer',$data);
+		$this->load->view('dashboard/main');
+		$this->load->view('footer');
 	}
 }

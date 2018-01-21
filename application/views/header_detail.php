@@ -65,43 +65,7 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li>
-                    <a href="<?=site_url('Dashboard');?>"><i class="fa fa-home"></i>Dashboard</a>
-                  </li>
-                  <li><a><i class="fa fa-table"></i> Berita <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <?php
-                      foreach($topik as $row){
-                        echo "<li><a href=".site_url('Berita/index/'.$row->id_topik).">$row->nama_topik</a></li>";
 
-                      }
-                       ?>
-                      <!-- <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="<?=site_url('Trend');?>"><i class="fa fa-list-ol"></i>Trend Berita</span></a>
-                  </li>
-                  <li>
-                    <a href="<?=site_url('Media');?>"><i class="fa fa-list-alt"></i> <span>Media &amp; Title</span></a>
-                  </li>
-                    <li>
-                      <a href="<?=site_url('Grafik');?>"><i class="fa fa-bar-chart"></i>Grafik</span></a>
-                    </li>
-                  <li>
-                    <a href="<?=site_url('Cari');?>"><i class="fa fa-search"></i>Pencarian</span></a>
-                  </li>
-
-                </ul>
-              </div>
-
-
-            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -127,23 +91,9 @@
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <?=$this->session->userdata('username');?>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="<?=site_url('Login/logout');?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
 
 
-              </ul>
+            
             </nav>
           </div>
         </div>
