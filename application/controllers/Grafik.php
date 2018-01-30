@@ -73,8 +73,20 @@ class Grafik extends CI_Controller{
           $data['jml'][$i] = $row->jml;
           $i++;
         }
-      }else if($nama_grafik == "narasumber"){
-        $query = $this->Grafik_m->get_narasumber($tgl_awal,$tgl_akhir);
+      }else if($nama_grafik == "narasumber_internal"){
+        $query = $this->Grafik_m->get_narasumber_int($tgl_awal,$tgl_akhir);
+        $data['jml_categories'] = $query->num_rows();
+        $data['nama_grafik'] = "Grafik Sumber Media";
+        $data['nama_sub_grafik'] = "Persebaran Sumber Media Peternakan";
+        $data['data_grafik'] = "Sumber Media";
+        $i=0;
+        foreach($query->result() as $row){
+          $data['categories'][$i] = $row->alias;
+          $data['jml'][$i] = $row->jml;
+          $i++;
+        }
+      }else if($nama_grafik == "narasumber_eksternal"){
+        $query = $this->Grafik_m->get_narasumber_eks($tgl_awal,$tgl_akhir);
         $data['jml_categories'] = $query->num_rows();
         $data['nama_grafik'] = "Grafik Sumber Media";
         $data['nama_sub_grafik'] = "Persebaran Sumber Media Peternakan";

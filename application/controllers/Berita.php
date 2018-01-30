@@ -184,6 +184,11 @@ class Berita extends CI_Controller {
     foreach($narsum as $row){
       $data['narsum_opt'][$row->id_narasumber] = $row->nama_narasumber;
     }
+    //untuk optino tone berita
+    $data['tone_opt'][''] = "Pilih Tone";
+    $data['tone_opt'][0] = "Netral";
+    $data['tone_opt'][-1] = "Negatif";
+    $data['tone_opt'][1] = "Positif";
 
     //mengambil data di database
     $query = $this->Berita_m->get_isi_berita_by_id($id_isi_berita);
@@ -203,6 +208,7 @@ class Berita extends CI_Controller {
       $data['wartawan'] = $data_edit->wartawan;
       $data['link_berita'] = $data_edit->link_berita;
       $data['halaman'] = $data_edit->halaman;
+      $data['tone_berita'] = $data_edit->tone_berita;
       $data['ad_value'] = $data_edit->ad_value;
       $data['news_value'] = $data_edit->news_value;
       $data['isi_berita'] = $data_edit->isi_berita;
@@ -253,6 +259,7 @@ class Berita extends CI_Controller {
       $input['wartawan'] = $this->input->post('wartawan');
       $input['halaman'] = $this->input->post('halaman');
       $input['link_berita'] = $this->input->post('link_berita');
+      $input['tone_berita'] = $this->input->post('tone_berita');
       $input['ad_value'] = $this->input->post('ad_value');
       $input['news_value'] = $this->input->post('news_value');
       $input['isi_berita'] = nl2br($this->input->post('isi_berita'));

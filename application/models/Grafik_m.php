@@ -48,7 +48,7 @@ class Grafik_m extends CI_Model{
     return $this->db->get();
   }
 
-  public function get_narasumber($tgl_awal=null,$tgl_akhir=null){
+  public function get_narasumber_int($tgl_awal=null,$tgl_akhir=null){
     $this->db->select('*,count(isi_berita.id_narasumber) as jml');
     $this->db->from('isi_berita,narasumber');
     $this->db->where('isi_berita.id_narasumber = narasumber.id_narasumber');
@@ -56,6 +56,21 @@ class Grafik_m extends CI_Model{
       $this->db->where('tgl_berita >=', $tgl_awal);
       $this->db->where('tgl_berita <=', $tgl_akhir);
     }
+    $this->db->where('jenis_narasumber = "internal"');
+    $this->db->group_by('isi_berita.id_narasumber');
+    $this->db->order_by('jml','desc');
+    return $this->db->get();
+  }
+
+  public function get_narasumber_eks($tgl_awal=null,$tgl_akhir=null){
+    $this->db->select('*,count(isi_berita.id_narasumber) as jml');
+    $this->db->from('isi_berita,narasumber');
+    $this->db->where('isi_berita.id_narasumber = narasumber.id_narasumber');
+    if($tgl_awal && $tgl_akhir){
+      $this->db->where('tgl_berita >=', $tgl_awal);
+      $this->db->where('tgl_berita <=', $tgl_akhir);
+    }
+    $this->db->where('jenis_narasumber = "eksternal"');
     $this->db->group_by('isi_berita.id_narasumber');
     $this->db->order_by('jml','desc');
     return $this->db->get();

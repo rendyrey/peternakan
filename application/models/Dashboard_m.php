@@ -52,7 +52,12 @@ class Dashboard_m extends CI_Model {
 		$this->db->from('isi_berita,sub_topik');
 		// $this->db->where('tgl_berita',date('Y-m-d'));
 		$this->db->where('isi_berita.id_sub_topik=sub_topik.id_sub_topik');
-    $this->db->where('tgl_post >=',date('Y-m-d'));
+    if(date('H:i') < "02:30"){
+     		$this->db->where('tgl_post >=',date('Y-m-d H:i',strtotime("yesterday 17:00")));
+     		//$this->db->where('tgl_berita',date('Y-m-d'));
+     		}else{
+     		$this->db->where('tgl_berita',date('Y-m-d'));
+     		}
 		$this->db->group_by('isi_berita.id_sub_topik');
 		$this->db->order_by('total', 'desc');
 		return $this->db->get();

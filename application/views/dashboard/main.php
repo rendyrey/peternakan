@@ -9,17 +9,17 @@
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top green"><i class="fa fa-arrow-circle-up"></i> Berita Positif</span>
       <div class="count green"><?=$jml_pos;?></div>
-      <span class="count_bottom"><i class="green"><?=$persen_pos."%";?> Hari ini</i></span>
+      <span class="count_bottom"><i class="green"><?=number_format($persen_pos,2)."%";?> Hari ini</i></span>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top red"><i class="fa fa-arrow-circle-down"></i> Berita Negatif</span>
       <div class="count red"><?=$jml_neg;?></div>
-      <span class="count_bottom"><i class="red"><?=$persen_neg."%";?> Hari ini</i></span>
+      <span class="count_bottom"><i class="red"><?=number_format($persen_neg,2)."%";?> Hari ini</i></span>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
       <span class="count_top blue"><i class="fa fa-arrow-circle-right"></i> Berita Netral</span>
       <div class="count blue"><?=$jml_neu;?></div>
-      <span class="count_bottom"><i class="blue"><?=$persen_neu."%";?> Hari ini</i></span>
+      <span class="count_bottom"><i class="blue"><?=number_format($persen_neu,2)."%";?> Hari ini</i></span>
     </div>
 
 

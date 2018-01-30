@@ -84,18 +84,18 @@
                       <li><a href="tables_dynamic.html">Table Dynamic</a></li> -->
                     </ul>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href="<?=site_url('Trend');?>"><i class="fa fa-list-ol"></i>Trend Berita</span></a>
-                  </li>
+                  </li> -->
                   <li>
                     <a href="<?=site_url('Media');?>"><i class="fa fa-list-alt"></i> <span>Media &amp; Title</span></a>
                   </li>
                     <li>
                       <a href="<?=site_url('Grafik');?>"><i class="fa fa-bar-chart"></i>Grafik</span></a>
                     </li>
-                  <li>
+                  <!-- <li>
                     <a href="<?=site_url('Cari');?>"><i class="fa fa-search"></i>Pencarian</span></a>
-                  </li>
+                  </li> -->
 
                 </ul>
               </div>

@@ -47,7 +47,8 @@
                           <option value="sub_topik">Sub Topik</option>
                           <option value="topik">Topik</option>
                           <option value="media">Sumber Media</option>
-                          <option value="narasumber">Narasumber</option>
+                          <option value="narasumber_internal">Narasumber Internal </option>
+                          <option value="narasumber_eksternal">Narasumber Eksternal</option>
                         </select>
                       </div>
                       <div class="col-md-6">

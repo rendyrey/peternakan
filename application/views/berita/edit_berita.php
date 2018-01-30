@@ -167,6 +167,13 @@
                   <textarea id="autosize" required class="form-control" name="isi_berita"><?=strip_tags($isi_berita);?></textarea>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">News Value</label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                  <?=form_dropdown('tone_berita',$tone_opt,$tone_berita,'class="form-control has-feedback-left"');?>
+                </div>
+              </div>
 
 
 
